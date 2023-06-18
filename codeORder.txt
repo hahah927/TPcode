@@ -1,0 +1,151 @@
+import javax.swing.JOptionPane;
+public class OrderTakerr {
+
+	public static void main(String[] args) {
+		String[] orderMenu = { "Mongolian Style Beef = ₱150" , "Chicken Nuggets = ₱80" , "Chicken Madeira = ₱125" , "Adobo = ₱90", "Chicken Breast = ₱115  " };
+		
+
+        int MENU = JOptionPane.showOptionDialog(null, "Choose your desired meal", "Menu for the day", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, orderMenu, orderMenu[0]);
+
+        int priceMenu = MainPrice(MENU);
+        
+        
+        String[] orderDrinks = { "Coca-cola = ₱25" , "Manggo Shake = ₱30" , "Ice tea = ₱20" , "Orange Juice = ₱20" };
+	
+        int DRINKS = JOptionPane.showOptionDialog(null, "Choose your preferred drinks", "Menu for the day", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, orderDrinks, orderDrinks[0]);
+
+        int priceDrinks = DrinksPrice (DRINKS);
+        	
+        boolean SideDishes = SideDishes();
+        int Sideprice = 0 ;
+        
+        if(SideDishes)
+        {
+        	String [] sideDishMenu = { " Cake = ₱75 ", " Halo-Halo = ₱40", "Pizza = ₱100", "Graham = ₱50"};
+        	
+        	  int Dish = JOptionPane.showOptionDialog(null, "Choose your desired Side Dishes", "Menu for the day", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, sideDishMenu, sideDishMenu[0]);
+
+               Sideprice = SidePrice(Dish);
+        }
+        
+        int quantity = Integer.parseInt(JOptionPane.showInputDialog("Enter the overall quantity of the orders:"));
+
+        
+        int Amount = (priceMenu + priceDrinks + Sideprice);
+        int totalAmount = Amount * quantity;
+        JOptionPane.showMessageDialog(null, "Total amount: ₱" + totalAmount, "Total Amount", 0);
+
+        int pay = Integer.parseInt(JOptionPane.showInputDialog(null,"Please input amount to pay"));
+
+        int change = pay-totalAmount;
+
+        JOptionPane.showMessageDialog(null, "Payment: ₱" + pay + "\nChange: ₱" + change);
+
+        JOptionPane.showMessageDialog(null, "Thank you!", "Thank You", 0);
+    }
+
+    public static int QuantityInput(String message)
+    {
+        String input = JOptionPane.showInputDialog(null, message, message, 0);
+
+        return Integer.parseInt(input);
+
+    }
+    
+    public static int MainPrice(int menu) 
+	{
+		int PriceM;
+        switch (menu)
+        {
+            case 0:
+            	PriceM = 150;
+            break;
+
+            case 1:
+            	PriceM = 80;
+            break;
+
+            case 2:
+            	PriceM = 125;
+            break;
+
+            case 3:
+            	PriceM = 90;
+            break;
+            
+            case 4:
+            	PriceM= 115;
+                break;
+            
+            default:
+            	PriceM = 0;
+            break;
+
+        }
+        return PriceM;			
+	}
+    
+    public static int DrinksPrice(int drinks) {
+		int PriceD;
+        switch (drinks)
+        {
+            case 0:
+            	PriceD = 25;
+            break;
+
+            case 1:
+            	PriceD = 30;
+            break;
+
+            case 2:
+            	PriceD = 20;
+            break;
+
+            case 3:
+            	PriceD = 20;
+
+            default:
+            	PriceD = 0;
+            break;
+
+        }
+        return PriceD;
+	}
+
+	
+
+	public static int SidePrice(int Dish) {
+		int PriceS;
+        switch (Dish)
+        {
+            case 0:
+            	PriceS = 35;
+            break;
+
+            case 1:
+            	PriceS = 30;
+            break;
+
+            case 2:
+            	PriceS = 30;
+            break;
+
+            case 3:
+            	PriceS = 50;
+            
+            default:
+            	PriceS = 0;
+            break;
+
+        }
+        return PriceS;
+        
+	}
+	public static boolean SideDishes() 
+    {
+        int response = JOptionPane.showConfirmDialog(null, "Do you want side dishes/desserts?");
+        return response == JOptionPane.YES_OPTION;
+    }
+	}
+
+
